@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="index">
         <div v-if="$store.state.auth">
             <p>
                 You are authenticated. You can see the
@@ -29,6 +29,15 @@
                 Cookie.remove('auth')
                 this.$store.commit('setAuth', null)
             }
-        }
+        },
+        layout: 'mainView'
     }
 </script>
+
+<style scoped>
+
+    .index {
+        flex: 1;
+    }
+
+</style>

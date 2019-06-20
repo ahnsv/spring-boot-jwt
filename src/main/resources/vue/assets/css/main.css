@@ -1,0 +1,37 @@
+* {
+    font-family: 'Spoqa Han Sans', Arial;
+}
+
+body, html {
+    margin: 0;
+}
+
+.default-enter {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.default-enter-active {
+    opacity: 1;
+    visibility: visible;
+    transition: all 500ms linear;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.0);
+    border-radius: 10px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px;
+}
+
+div:hover ::-webkit-scrollbar-thumb {
+    background: #00000020;
+}
+
+::-webkit-scrollbar-track {
+    margin: 3% 0;
+}

@@ -9,6 +9,7 @@
 
 <script>
     export default {
-        middleware: 'authenticated'
+        middleware: 'authenticated',
+        layout: 'mainView'
     }
 </script>
