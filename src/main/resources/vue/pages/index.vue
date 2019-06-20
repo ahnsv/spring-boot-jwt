@@ -1,12 +1,6 @@
 <template>
     <div class="index">
         <div v-if="$store.state.auth">
-            <p>
-                You are authenticated. You can see the
-                <NuxtLink to="/secret">
-                    secret page
-                </NuxtLink>!
-            </p>
             <button @click="logout">
                 Logout
             </button>
@@ -15,7 +9,7 @@
             Please
             <NuxtLink to="/login">
                 login
-            </NuxtLink>.
+            </NuxtLink>
         </p>
     </div>
 </template>
@@ -30,7 +24,8 @@
                 this.$store.commit('setAuth', null)
             }
         },
-        layout: 'mainView'
+        layout: 'mainView',
+        middleware: 'authenticated'
     }
 </script>
 

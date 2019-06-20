@@ -1,6 +1,10 @@
 <template>
     <div class="sidebar">
-        <div class="sidebar--logo">Logo</div>
+        <div class="sidebar--logo">
+            <NuxtLink to="/">
+                Logo
+            </NuxtLink>
+        </div>
         <div class="sidebar--content">
             <div class="sidebar--content__menu">
                 <div class="sidebar--content__menu--block"
@@ -58,6 +62,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .sidebar--logo > a {
+        text-decoration: none;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2E495E;
     }
 
     .sidebar--content__menu {

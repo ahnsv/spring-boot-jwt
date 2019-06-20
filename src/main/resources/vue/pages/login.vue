@@ -23,7 +23,7 @@
                        id="password"
                        class="login--form--password__input"
                        v-model="pw"
-                       @keypress.enter="postLogin"
+                       @keypress.enter="loginReq"
                 >
             </div>
         </form>
@@ -43,13 +43,16 @@
             }
         },
         methods: {
-            postLogin() {
-                setTimeout(() => { // we simulate the async request with timeout.
-                    signIn(this.sw, this.pw);
-                    this.$store.commit('setAuth', auth) // mutating to store for client rendering
-                    Cookie.set('auth', auth) // saving token in cookie for server rendering
-                    this.$router.push('/')
-                }, 1000)
+            async loginReq() {
+                const req = signIn(this.sw, this.pw)
+                req.catch(err => {
+                    console.log('Error happened ', err);
+                })
+                    .then(() => {
+                        this.$store.commit('setAuth', auth) // mutating to store for client rendering
+                        Cookie.set('auth', auth) // saving token in cookie for server rendering
+                        this.$router.push('/')
+                    })
             }
         },
         layout: 'loginView'

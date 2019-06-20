@@ -4,7 +4,8 @@
 
 <script>
     export default {
-        name: "loginView"
+        name: "loginView",
+        transitions: 'default'
     }
 </script>
 

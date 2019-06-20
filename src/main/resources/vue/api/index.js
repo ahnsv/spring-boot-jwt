@@ -7,6 +7,7 @@ const signIn = (username, password) =>
         .then((data) => data.text())
         .then((res) => {
             console.log(res);
+            // TODO: sophisticate this part
             if (JSON.parse(res)) {
                 throw new Error("Error occurred");
             } else {
