@@ -1,4 +1,4 @@
-package murraco.model;
+package anq10.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

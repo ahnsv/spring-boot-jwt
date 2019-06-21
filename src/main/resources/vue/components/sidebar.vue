@@ -47,6 +47,9 @@
         display: flex;
         flex-direction: column;
         min-width: 15vw;
+        transition: all 250ms;
+        background-color: rgb(var(--background-color));
+        color: rgb(var(--color));
     }
 
 
@@ -91,6 +94,15 @@
     .sidebar--content__menu--row {
         display: flex;
         flex-direction: row;
+        cursor: pointer;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .sidebar--content__menu--row:hover {
+        background-color: #656565;
+        transition: all 200ms ease-in;
     }
 
     .sidebar--content__menu--row > div:first-child {

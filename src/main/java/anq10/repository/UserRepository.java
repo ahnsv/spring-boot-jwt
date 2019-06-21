@@ -1,10 +1,10 @@
-package murraco.repository;
+package anq10.repository;
 
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import murraco.model.User;
+import anq10.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 

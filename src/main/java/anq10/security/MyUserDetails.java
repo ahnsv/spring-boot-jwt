@@ -1,4 +1,4 @@
-package murraco.security;
+package anq10.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import murraco.model.User;
-import murraco.repository.UserRepository;
+import anq10.model.User;
+import anq10.repository.UserRepository;
 
 @Service
 public class MyUserDetails implements UserDetailsService {

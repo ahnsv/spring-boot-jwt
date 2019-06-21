@@ -1,4 +1,4 @@
-package murraco.security;
+package anq10.security;
 
 import java.util.Base64;
 import java.util.Date;
@@ -22,8 +22,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import murraco.exception.CustomException;
-import murraco.model.Role;
+import anq10.exception.CustomException;
+import anq10.model.Role;
 
 @Component
 public class JwtTokenProvider {

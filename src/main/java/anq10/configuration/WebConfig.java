@@ -1,4 +1,4 @@
-package murraco.configuration;
+package anq10.configuration;
 
 import io.swagger.models.HttpMethod;
 import org.springframework.context.annotation.Bean;
@@ -60,6 +60,12 @@ public class WebConfig {
                 corsRegistry.addMapping("/users/**")
                         .allowedOrigins("*")
                         .allowedMethods(HttpMethod.POST.name())
+                        .allowCredentials(false)
+                        .maxAge(3600);
+
+                corsRegistry.addMapping("/api/v1/**")
+                        .allowedOrigins("*")
+                        .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name())
                         .allowCredentials(false)
                         .maxAge(3600);
             }

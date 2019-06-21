@@ -2,21 +2,36 @@ const auth = {
     accessToken: ''
 }
 
-const signIn = (username, password) =>
-    fetch(`http://localhost:8080/users/signin?username=${username}&password=${password}`, {method: 'POST'})
-        .then((data) => data.text())
-        .then((res) => {
-            console.log(res);
-            // TODO: sophisticate this part
-            if (JSON.parse(res)) {
-                throw new Error("Error occurred");
+function signIn(username, password) {
+    return fetch(`http://localhost:8080/users/signin?username=${username}&password=${password}`,
+        {method: 'POST'})
+        .then(res => {
+            if (res.ok) {
+                return res.text()
             } else {
-                console.log('hello');
-                auth.accessToken = res;
+                switch (res.status) {
+                    case 422:
+                        throw new Error(`잘못된 군번 또는 비밀번호를 입력하셨습니다.`)
+                        break;
+                    case 400:
+                        throw new Error(`잘못된 요청입니다.`)
+                        break;
+                    default:
+                        console.log(`unhandled error number`)
+                }
+                throw new Error();
             }
-        });
+        })
+        .then(token => {
+            console.log(`result token is added to auth`)
+            auth.accessToken = token;
+            return JSON.stringify(auth);
+        })
+        // .catch(err => {
+        //     alert(err);
+        // })
+}
 
 export {
-    auth,
     signIn
 }

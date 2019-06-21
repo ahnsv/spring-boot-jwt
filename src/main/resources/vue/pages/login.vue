@@ -27,28 +27,43 @@
                 >
             </div>
         </form>
+
+        <transition name="fade">
+            <error-dialog :error-msg="error.errorMsg" :is-error="error.isError"
+                          @confirm="error.isError = false"></error-dialog>
+        </transition>
     </div>
 </template>
 
 <script>
+    import ErrorDialog from "../components/errorDialog";
+
     const Cookie = process.client ? require('js-cookie') : undefined
-    import {signIn, auth} from '../api'
+    import {signIn} from '../api'
 
     export default {
+        components: {ErrorDialog},
         middleware: 'notAuthenticated',
         data() {
             return {
                 sn: '',
-                pw: ''
+                pw: '',
+                error: {
+                    isError: false,
+                    errorMsg: ''
+                }
             }
         },
         methods: {
             async loginReq() {
-                const req = signIn(this.sw, this.pw)
-                req.catch(err => {
-                    console.log('Error happened ', err);
-                })
-                    .then(() => {
+                await signIn(this.sn, this.pw)
+                    .catch(err => {
+                        this.error = {
+                            isError: true,
+                            errorMsg: err
+                        };
+                    })
+                    .then((auth) => {
                         this.$store.commit('setAuth', auth) // mutating to store for client rendering
                         Cookie.set('auth', auth) // saving token in cookie for server rendering
                         this.$router.push('/')
@@ -121,5 +136,14 @@
     form.login--form label {
         font-size: 1.5rem;
         font-weight: 500;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
+        opacity: 0;
     }
 </style>
