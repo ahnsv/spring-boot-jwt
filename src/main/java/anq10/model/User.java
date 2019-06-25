@@ -1,6 +1,7 @@
 package anq10.model;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
 @Entity
-@Getter
+@Data
 public class User {
 
     @Id
@@ -35,16 +36,4 @@ public class User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     List<Role> roles;
-
-    @Builder
-    public User(String username, String email, String password, List<Role> roles) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

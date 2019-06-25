@@ -1,6 +1,7 @@
 package anq10.model;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,4 +24,10 @@ public class Post {
 
     @Temporal(TemporalType.TIME)
     private Date modDate;
+
+    @Builder
+    public Post(String author, String content) {
+        this.author = author;
+        this.content = content;
+    }
 }

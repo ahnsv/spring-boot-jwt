@@ -50,7 +50,7 @@
     }
 
     .tabbar--content:hover {
-        background-color: #656565;
+        background-color: #cecece;
         transition: all 200ms ease-in;
     }
 

@@ -8,16 +8,16 @@
         <div class="sidebar--content">
             <div class="sidebar--content__menu">
                 <div class="sidebar--content__menu--block"
-                     v-for="(block, index) in ['test1', 'test2', 'test3']"
+                     v-for="(block, index) in tree"
                      :key="index"
                 >
                     <div class="sidebar--content__menu--title">
-                        {{block}}
+                        {{block.menu}}
                     </div>
-                    <div v-for="(item, idx) in [0,1,2,3,4,5]"
+                    <div v-for="(item, idx) in block.children"
                          :key="idx" class="sidebar--content__menu--row"
-                         :class="{active: activeContent === idx+(index*6)}"
-                         @click="activeContent = idx+(index*6)"
+                         :class="{active: activeContent === idx+(block.children.length)}"
+                         @click="activeContent = idx+(block.children.length)"
                     >
                         <div class="menu--row__indicator"></div>
                         <div class="menu--row__name">{{item}}</div>
@@ -38,7 +38,8 @@
             return {
                 activeContent: 0
             }
-        }
+        },
+        props: ['tree']
     }
 </script>
 
@@ -82,7 +83,7 @@
     .sidebar--content__menu {
         display: flex;
         flex-direction: column;
-        max-height: 90vh;
+        max-height: 85vh;
         overflow-y: auto;
     }
 

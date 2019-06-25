@@ -2,8 +2,8 @@
     <div class="index">
         <div v-if="$store.state.auth">
             <h1>공군 위탁교육생 체계</h1>
-            <h5>공군 위탁교육생 체계는 멋집니다. 마! 이게 UI다!</h5>
             <tabbar/>
+            <board-preview></board-preview>
             <div @click="logout">Logout</div>
         </div>
         <p v-else>
@@ -16,11 +16,12 @@
 </template>
 
 <script>
-    import Tabbar from "../components/tabbar";
+    import tabbar from "../components/tabbar";
+    import BoardPreview from "../components/boardPreview";
     const Cookie = process.client ? require('js-cookie') : undefined
 
     export default {
-        components: {Tabbar},
+        components: {BoardPreview, tabbar},
         methods: {
             logout() {
                 Cookie.remove('auth')

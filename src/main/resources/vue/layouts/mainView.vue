@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <sidebar :style="theme"/>
+        <sidebar :style="theme" :tree="menuTree"/>
         <Nuxt class="main--content" :style="theme"/>
         <div class="dark-mode" @click="vantaBlack">button</div>
     </div>
@@ -13,6 +13,17 @@
         name: "mainView",
         components: {Sidebar},
         transitions: 'default',
+        data() {
+            return {
+                menuTree: [{menu: '국내 교육생', children: ['1', '2', '3']}, {
+                    menu: '국외 교육생',
+                    children: ['1', '2', '3']
+                }, {menu: '기타', children: ['1', '2', '3']}],
+                categories: [{menu: '국내 교육생', children: ['A', 'B', 'C']}, {menu: '국외 교육생', children: ['A', 'B', 'C']}, {
+                    menu: '기타', children: ['A', 'B', 'C']
+                } ]
+            }
+        },
         computed: {
             theme() {
                 const [color, backgroundColor] = this.$store.state.theme

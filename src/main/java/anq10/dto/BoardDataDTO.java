@@ -1,28 +1,19 @@
-package anq10.model;
+package anq10.dto;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name = "board")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Board {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class BoardDataDTO {
     private String name;
-
-    @ElementCollection
     private List<String> categories;
-    @ElementCollection
     private List<String> tags;
 
     @Builder
-    public Board(String name, List<String> categories, List<String> tags) {
+    public BoardDataDTO(String name, List<String> categories, List<String> tags) {
         this.name = name;
         this.categories = categories;
         this.tags = tags;

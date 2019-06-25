@@ -36,26 +36,21 @@ public class JwtAuthServiceApp implements CommandLineRunner {
 
     @Override
     public void run(String... params) throws Exception {
-        User admin = User.builder()
-                .username("admin")
-                .password("admin")
-                .email("admin@email.com")
-                .roles(new ArrayList<>(Arrays.asList(Role.ROLE_ADMIN))).build();
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword("admin");
+        admin.setEmail("admin@email.com");
+        admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
+
         userService.signup(admin);
 
-        User client = User.builder()
-                .username("client")
-                .password("client")
-                .email("client@email.com")
-                .roles(new ArrayList<>(Arrays.asList(Role.ROLE_CLIENT))).build();
+        User client = new User();
+        client.setUsername("client");
+        client.setPassword("client");
+        client.setEmail("client@email.com");
+        client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT)));
+
         userService.signup(client);
-
-
-        Board mainBoard = Board.builder()
-                .name("main")
-                .categories(new ArrayList<String>(Arrays.asList("hello", "hello2", "helloworld")))
-                .build();
-        boardRepository.save(mainBoard);
     }
 
 }
