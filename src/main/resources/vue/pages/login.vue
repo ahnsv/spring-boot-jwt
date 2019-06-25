@@ -1,77 +1,85 @@
 <template>
-    <div class="login">
-        <div class="login--plz">
-            <div class="login--plz--logo">
-                Logo
-            </div>
-            <div class="login--plz--content">
-                공군 위탁교육생 체계에 로그인해주십시오
-            </div>
-        </div>
-        <form action="" class="login--form">
-            <div class="login--form--username">
-                <label class="login--form--username__label">군번</label>
-                <input type="text"
-                       id="username"
-                       class="login--form--username__input"
-                       v-model="sn"
-                >
-            </div>
-            <div class="login--form--password">
-                <label class="login--form--password__label">비밀번호</label>
-                <input type="password"
-                       id="password"
-                       class="login--form--password__input"
-                       v-model="pw"
-                       @keypress.enter="loginReq"
-                >
-            </div>
-        </form>
-
-        <transition name="fade">
-            <error-dialog :error-msg="error.errorMsg" :is-error="error.isError"
-                          @confirm="error.isError = false"></error-dialog>
-        </transition>
+  <div class="login">
+    <div class="login--plz">
+      <div class="login--plz--logo">
+        Logo
+      </div>
+      <div class="login--plz--content">
+        공군 위탁교육생 체계에 로그인해주십시오
+      </div>
     </div>
+    <form
+      action=""
+      class="login--form"
+    >
+      <div class="login--form--username">
+        <label class="login--form--username__label">군번</label>
+        <input
+          id="username"
+          v-model="sn"
+          type="text"
+          class="login--form--username__input"
+        >
+      </div>
+      <div class="login--form--password">
+        <label class="login--form--password__label">비밀번호</label>
+        <input
+          id="password"
+          v-model="pw"
+          type="password"
+          class="login--form--password__input"
+          @keypress.enter="loginReq"
+        >
+      </div>
+    </form>
+
+    <transition name="fade">
+      <error-dialog
+        :error-msg="error.errorMsg"
+        :is-error="error.isError"
+        @confirm="error.isError = false"
+      />
+    </transition>
+  </div>
 </template>
 
 <script>
-    import ErrorDialog from "../components/errorDialog";
+import ErrorDialog from "../components/errorDialog"
 
-    const Cookie = process.client ? require('js-cookie') : undefined
-    import {signIn} from '../api'
+const Cookie = process.client ? require('js-cookie') : undefined
+import {signIn} from '../api'
 
-    export default {
-        components: {ErrorDialog},
-        middleware: 'notAuthenticated',
-        data() {
-            return {
-                sn: '',
-                pw: '',
-                error: {
-                    isError: false,
-                    errorMsg: ''
-                }
-            }
-        },
-        methods: {
-            async loginReq() {
-                await signIn(this.sn, this.pw)
-                    .catch(err => {
-                        this.error = {
-                            isError: true,
-                            errorMsg: err
-                        };
-                    })
-                    .then((auth) => {
-                        this.$store.commit('setAuth', auth) // mutating to store for client rendering
-                        Cookie.set('auth', auth) // saving token in cookie for server rendering
-                        this.$router.push('/')
-                    })
-            }
-        },
-        layout: 'loginView'
+export default {
+  components: {ErrorDialog},
+  middleware: 'notAuthenticated',
+  data() {
+    return {
+      sn: '',
+      pw: '',
+      error: {
+        isError: false,
+        errorMsg: ''
+      }
     }
+  },
+  methods: {
+    async loginReq() {
+      await signIn(this.sn, this.pw)
+        .catch(err => {
+          this.error = {
+            isError: true,
+            errorMsg: err
+          }
+        })
+        .then((auth) => {
+          this.$store.commit('setAuth', auth) // mutating to store for client rendering
+          Cookie.set('auth', auth) // saving token in cookie for server rendering
+          this.$router.push('/')
+        })
+    }
+  },
+  layout: 'loginView'
+}
 </script>
 
 <style scoped>

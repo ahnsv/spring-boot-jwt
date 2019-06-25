@@ -1,12 +1,12 @@
 <template>
-    <Nuxt class="main--login"/>
+  <Nuxt class="main--login" />
 </template>
 
 <script>
-    export default {
-        name: "loginView",
-        transitions: 'default'
-    }
+export default {
+  name: "LoginView",
+  transitions: 'default'
+}
 </script>
 
 <style scoped>

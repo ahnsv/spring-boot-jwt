@@ -1,46 +1,51 @@
 <template>
-    <div class="sidebar">
-        <div class="sidebar--logo">
-            <NuxtLink to="/">
-                Logo
-            </NuxtLink>
-        </div>
-        <div class="sidebar--content">
-            <div class="sidebar--content__menu">
-                <div class="sidebar--content__menu--block"
-                     v-for="(block, index) in tree"
-                     :key="index"
-                >
-                    <div class="sidebar--content__menu--title">
-                        {{block.menu}}
-                    </div>
-                    <div v-for="(item, idx) in block.children"
-                         :key="idx" class="sidebar--content__menu--row"
-                         :class="{active: activeContent === idx+(block.children.length)}"
-                         @click="activeContent = idx+(block.children.length)"
-                    >
-                        <div class="menu--row__indicator"></div>
-                        <div class="menu--row__name">{{item}}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar--content__contact">
-                Contact
-            </div>
-        </div>
+  <div class="sidebar">
+    <div class="sidebar--logo">
+      <NuxtLink to="/">
+        Logo
+      </NuxtLink>
     </div>
+    <div class="sidebar--content">
+      <div class="sidebar--content__menu">
+        <div
+          v-for="(block, index) in tree"
+          :key="index"
+          class="sidebar--content__menu--block"
+        >
+          <div class="sidebar--content__menu--title">
+            {{ block.menu }}
+          </div>
+          <div
+            v-for="(item, idx) in block.children"
+            :key="idx"
+            class="sidebar--content__menu--row"
+            :class="{active: activeContent === idx+(block.children.length)}"
+            @click="activeContent = idx+(block.children.length)"
+          >
+            <div class="menu--row__indicator" />
+            <div class="menu--row__name">
+              {{ item }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar--content__contact">
+        Contact
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "sidebar",
-        data() {
-            return {
-                activeContent: 0
-            }
-        },
-        props: ['tree']
+export default {
+  name: "Sidebar",
+  props: ['tree'],
+  data() {
+    return {
+      activeContent: 0
     }
+  }
+}
 </script>
 
 <style scoped>

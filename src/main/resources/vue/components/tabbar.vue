@@ -1,25 +1,31 @@
 <template>
-    <div class="tabbar">
-        <div class="tabbar--col"
-             v-for="(item, index) in ['test1', 'test2', 'test3', 'test4']"
-             :key="index"
-             :class="{ active: activeContent === index}"
-        >
-            <div class="tabbar--content" @click="activeContent = index">{{item}}</div>
-            <div class="tabbar--indicator"></div>
-        </div>
+  <div class="tabbar">
+    <div
+      v-for="(item, index) in ['test1', 'test2', 'test3', 'test4']"
+      :key="index"
+      class="tabbar--col"
+      :class="{ active: activeContent === index}"
+    >
+      <div
+        class="tabbar--content"
+        @click="activeContent = index"
+      >
+        {{ item }}
+      </div>
+      <div class="tabbar--indicator" />
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "tabbar",
-        data() {
-            return {
-                activeContent: 0
-            }
-        }
+export default {
+  name: "Tabbar",
+  data() {
+    return {
+      activeContent: 0
     }
+  }
+}
 </script>
 
 <style scoped>

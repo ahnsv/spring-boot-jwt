@@ -1,22 +1,32 @@
 <template>
-    <div class="error-dialog" v-if="isError">
-        <div class="error-dialog--message">{{errorMsg}}</div>
-        <div class="error-dialog--console">
-            <div class="error-dialog--console__confirm" @click="confirm">확인</div>
-        </div>
+  <div
+    v-if="isError"
+    class="error-dialog"
+  >
+    <div class="error-dialog--message">
+      {{ errorMsg }}
     </div>
+    <div class="error-dialog--console">
+      <div
+        class="error-dialog--console__confirm"
+        @click="confirm"
+      >
+        확인
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "errorDialog",
-        props: ['errorMsg', 'isError'],
-        methods: {
-            confirm() {
-                this.$emit('confirm');
-            }
-        }
+export default {
+  name: "ErrorDialog",
+  props: ['errorMsg', 'isError'],
+  methods: {
+    confirm() {
+      this.$emit('confirm')
     }
+  }
+}
 </script>
 
 <style scoped>
